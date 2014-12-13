@@ -39,15 +39,15 @@ $ php composer.phar install
 
 **NOTE:** You also need set rights on folders:
 
-- ```
+  ```
   $ chmod 777 assets/
   ```
   
-- ```
+  ```
   $ chmod 777 runtime/
   ```
   
-- ```
+  ```
   $ chmod 777 web/assets/
   ```
 
