@@ -1,0 +1,70 @@
+.admin-wrapper{
+	margin-top: 60px;
+}
+.admin-content .glyphicon-remove{
+	color: #bb2413;
+}
+.admin-content .glyphicon-ok{
+	color: #3cc051;
+}
+.admin-content .panel-list-content td{
+	font-size: 12px;
+}
+.checker{
+	width: 19px;
+	height: 19px;
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	background: url("../img/form-elements.png") 0 -2px;
+}
+.checker input{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	margin: 0;
+	padding: 0;
+}
+.checker:hover{
+	background-position: -38px -2px;
+}
+.checker.checked{
+	background-position: -76px -2px;
+}
+.checker.disabled{
+	background-position: -57px -2px;
+}
+.checker.disabled.checked{
+	background-position: -95px -2px;
+}
+.content-add .form-group label{
+	margin-bottom: 10px;
+}
+.content-add .form-group .err-msg{
+	color: red;
+	font-size: 12px;
+	text-align: center;
+	margin-top: 5px;
+}
+
+.menu-items{
+	margin: 30px 0;
+}
+.menu-items .name{
+	display: inline-block;
+}
+.menu-items .level-0 .name{
+	padding-left: 10px;
+}
+.menu-items .level-1 .name{
+	padding-left: 30px;
+}
+.menu-items .level-2 .name{
+	padding-left: 60px;
+}
+.menu-items .level-3 .name{
+	padding-left: 90px;
+}

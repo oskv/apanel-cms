@@ -1,0 +1,56 @@
+.main-nav{
+	background: #3D3A3A;
+	height: 100%;
+	margin-top: 50px;
+	padding: 0;
+}
+.main-menu li{
+	list-style: none;
+}
+.main-menu > li{
+	border-bottom: 1px solid #5c5c5c;
+	margin: 0 !important;
+}
+.main-menu > li.active a:after,
+.main-menu > li >a:hover:after{
+	content: "";
+	position: absolute;
+	right: 0;
+	top: 12px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 8px 8px 8px 0;
+	border-color: transparent white transparent transparent;
+}
+.main-menu > li a{
+	color: white;
+	text-shadow: 1px 0px #000;
+	border-radius: 0;
+}
+.main-menu > li:not(.active) > a:hover,
+.main-menu > li.active > a{
+	color: white;
+	background: #007fff;
+}
+.main-menu li ul{
+	padding-left: 0;
+	margin: 5px 0;
+}
+.main-menu li li a{
+	padding: 3px 0px;
+	display: block;
+	font-size: 13px;
+	margin-bottom: 1px;
+}
+.main-menu > li > ul > li > a{
+	padding-left: 20px;
+}
+.main-menu > li > ul > li > ul > li > a{
+	padding-left: 40px;
+}
+.main-menu li li.active > a,
+.main-menu li li > a:hover{
+	background: #575757;
+	text-decoration: none;
+}

@@ -1,0 +1,32 @@
+.admin-general{
+	background: #444;
+}
+.admin-login{
+	margin-top: 10%;
+}
+.admin-login input[type="text"],
+.admin-login input[type="password"]{
+	border-left: 2px solid #35aa47;
+}
+.login-content{
+	box-shadow: 0 0 20px 0 black;
+}
+.login-content .well{
+	margin-bottom: 0;
+}
+.input-icon{
+	position: relative;
+}
+.input-icon .glyphicon{
+	color: #ccc;
+	display: block;
+	position: absolute;
+	margin: 11px 2px 4px 10px;
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
+	text-align: center;
+}
+.input-icon input{
+	padding-left: 40px;
+}
