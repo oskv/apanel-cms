@@ -62,5 +62,19 @@ $ bower install
 
 ### DATABASE
 
-Create new mysql db named yiicms2. Dump script locates in migrations/yiicms2.sql
+Create new mysql db named yii2cms.
+
+### DATABASE MIGRATIONS
+
+**NOTE:** First time you need to migrate yii rbac:
+
+```
+$ php yii migrate --migrationPath=@yii/rbac/migrations/
+```
+
+Migrate last db changes:
+
+```
+$ php yii migrate
+```
 
