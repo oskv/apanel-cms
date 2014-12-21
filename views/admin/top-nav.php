@@ -13,7 +13,7 @@ use yii\helpers\Url;
 			<ul class="dropdown-menu">
 				<li><a href="<?= Url::toRoute(['/admin']); ?>"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
 				<li class="divider"></li>
-				<li><a href="<?= Url::toRoute(['admin/logout']); ?>"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+				<li><a href="<?= Url::toRoute(['/admin/logout']); ?>"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
 			</ul>
 		</li>
 	</ul>
