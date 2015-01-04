@@ -1,6 +1,7 @@
 <?php
 namespace app\modules\dynamic_page\controllers;
 
+use app\modules\dynamic_page\models\DynamicPageSearch;
 use Yii;
 use app\components\ApanelAdminController;
 use app\modules\dynamic_page\models\DynamicPage;
@@ -10,8 +11,13 @@ class AdminController extends ApanelAdminController
 
 	public function actionIndex()
 	{
-		$models = DynamicPage::find()->all();
-		return $this->render('index', ['models' => $models]);
+		$searchModel = new DynamicPageSearch();
+		$dataProvider = $searchModel->search(Yii::$app->request->get());
+
+		return $this->render('index', [
+			'dataProvider' => $dataProvider,
+			'searchModel' => $searchModel,
+		]);
 	}
 
 	public function actionAdd($id=0)
@@ -61,15 +67,8 @@ class AdminController extends ApanelAdminController
 
 	public function actionDeleteSelected()
 	{
-		$idDeleted = array();
-		if(isset($_POST['DynamicPage'])){
-
-			foreach($_POST['DynamicPage'] as $k=>$val){
-				if($val['id']){
-					array_push($idDeleted, $k);
-				}
-			}
-			DynamicPage::deleteAll(['in', 'id', $idDeleted]);
+		if(isset($_GET['selection'])){
+			DynamicPage::deleteAll(['in', 'id', $_GET['selection']]);
 		}
 		$this->redirect('index');
 	}
