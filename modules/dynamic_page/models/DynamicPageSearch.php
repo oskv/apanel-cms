@@ -1,17 +1,7 @@
 <?php
 
-/**
- * @property integer $id
- * @property string $name
- * @property string $text
- * @property string $dt_created
- * @property integer $display
- * @property integer $public
- */
-
 namespace app\modules\dynamic_page\models;
 
-use yii\db\ActiveRecord;
 use yii\data\ActiveDataProvider;
 
 class DynamicPageSearch extends DynamicPage

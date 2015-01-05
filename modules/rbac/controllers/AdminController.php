@@ -1,9 +1,9 @@
 <?php
 namespace app\modules\rbac\controllers;
 
+use app\modules\rbac\models\PermissionSearch;
 use Yii;
 use app\components\ApanelAdminController;
-use app\modules\user\models\User;
 use app\modules\rbac\models\Role;
 use app\modules\rbac\models\Permission;
 
@@ -78,10 +78,14 @@ class AdminController extends ApanelAdminController
 	public function actionPermissions()
 	{
 		$auth = Yii::$app->authManager;
-		return $this->render('permissions',[
+		$searchModel = new PermissionSearch();
+		$dataProvider = $searchModel->search(Yii::$app->request->get());
+
+		return $this->render('permissions', [
+			'dataProvider' => $dataProvider,
+			'searchModel' => $searchModel,
 			'permissions' => $auth->getPermissions(),
-			'roles' => $auth->getRoles(),
-			'auth' => $auth
+			'roles' => $auth->getRoles()
 		]);
 	}
 
@@ -146,32 +150,12 @@ class AdminController extends ApanelAdminController
 	public function actionPermissionsDeleteSelected()
 	{
 		$auth = Yii::$app->authManager;
-		if(isset($_POST['Permission'])){
-			foreach($_POST['Permission'] as $k=>$val){
-				if($val['id']){
-					$auth->remove($auth->getPermission($k));
-				}
+		if(isset($_GET['selection'])){
+			foreach($_GET['selection'] as $k=>$val){
+				$auth->remove($auth->getPermission($val));
 			}
 		}
 		$this->redirect('permissions');
 	}
-
-
-
-	/*public  function actionLogin()
-	{
-		echo Yii::$app->user->login(User::findIdentity(2), 3600*24*30);
-		if (Yii::$app->user->can('createPost')) {
-			echo 'can createPost';
-		}else{
-			echo 'can not createPost';
-		}
-	}
-
-	public function actionLogout()
-	{
-		Yii::$app->user->logout();
-	}
-*/
 
 }
