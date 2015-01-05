@@ -6,6 +6,7 @@ use Yii;
 use app\components\ApanelAdminController;
 use app\modules\rbac\models\Role;
 use app\modules\rbac\models\Permission;
+use yii\data\ArrayDataProvider;
 
 class AdminController extends ApanelAdminController
 {
@@ -18,7 +19,16 @@ class AdminController extends ApanelAdminController
 	public function actionRoles()
 	{
 		$roles = Role::getAll();
-		return $this->render('roles', ['models' => $roles]);
+		$dataProvider = new ArrayDataProvider([
+			'allModels' => $roles,
+			'pagination' => [
+				'pageSize' => 10,
+			],
+		]);
+		return $this->render('roles', [
+			'models' => $roles,
+			'dataProvider' => $dataProvider
+		]);
 	}
 
 	public function actionRolesAdd($id = null)
@@ -64,12 +74,9 @@ class AdminController extends ApanelAdminController
 	public function actionRolesDeleteSelected()
 	{
 		$auth = Yii::$app->authManager;
-		if(isset($_POST['Role'])){
-
-			foreach($_POST['Role'] as $k=>$val){
-				if($val['id']){
-					$auth->remove($auth->getRole($k));
-				}
+		if(isset($_GET['selection'])){
+			foreach($_GET['selection'] as $val){
+				$auth->remove($auth->getRole($val));
 			}
 		}
 		$this->redirect('roles');
