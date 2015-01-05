@@ -2,6 +2,7 @@
 namespace app\modules\user\controllers;
 
 use app\modules\user\models\User;
+use app\modules\user\models\UserSearch;
 use Yii;
 use app\components\ApanelAdminController;
 
@@ -10,8 +11,13 @@ class AdminController extends ApanelAdminController
 
 	public function actionIndex()
 	{
-		$models = User::find()->all();
-		return $this->render('index', ['models' => $models, 'model' => new User()]);
+		$searchModel = new UserSearch();
+		$dataProvider = $searchModel->search(Yii::$app->request->get());
+
+		return $this->render('index', [
+			'dataProvider' => $dataProvider,
+			'searchModel' => $searchModel
+		]);
 	}
 
 	public function actionAdd($id = null)
@@ -65,15 +71,8 @@ class AdminController extends ApanelAdminController
 
 	public function actionDeleteSelected()
 	{
-		$idDeleted = array();
-		if(isset($_POST['User'])){
-
-			foreach($_POST['User'] as $k=>$val){
-				if($val['id']){
-					array_push($idDeleted, $k);
-				}
-			}
-			User::deleteAll(['in', 'id', $idDeleted]);
+		if(isset($_GET['selection'])){
+			User::deleteAll(['in', 'id', $_GET['selection']]);
 		}
 		$this->redirect('index');
 	}
