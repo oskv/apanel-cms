@@ -5,15 +5,23 @@ use app\modules\menu\models\Menu;
 use app\modules\menu\models\MenuItem;
 use Yii;
 use app\components\ApanelAdminController;
-use yii\helpers\Url;
+use yii\data\ActiveDataProvider;
 
 class AdminController extends ApanelAdminController
 {
 
 	public function actionIndex()
 	{
-		$models = Menu::find()->all();
-		return $this->render('index', ['models' => $models]);
+		$dataProvider = new ActiveDataProvider([
+			'query' => Menu::find(),
+			'pagination' => [
+				'pageSize' => 20,
+			],
+		]);
+
+		return $this->render('index', [
+			'dataProvider' => $dataProvider
+		]);
 	}
 
 	public function actionAdd($id=0)
@@ -55,15 +63,8 @@ class AdminController extends ApanelAdminController
 
 	public function actionDeleteSelected()
 	{
-		$idDeleted = array();
-		if(isset($_POST['Menu'])){
-
-			foreach($_POST['Menu'] as $k=>$val){
-				if($val['id']){
-					array_push($idDeleted, $k);
-				}
-			}
-			Menu::deleteAll(['in', 'id', $idDeleted]);
+		if(isset($_GET['selection'])){
+			Menu::deleteAll(['in', 'id', $_GET['selection']]);
 		}
 		$this->redirect('index');
 	}
